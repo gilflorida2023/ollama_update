@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Checking for updates for all installed Ollama models..."
+ollama list | awk 'NR>1 {print $1}' | while read -r model; do
+  echo "--- Pulling $model ---"
+  ollama pull "$model"
+  echo "--- Done with $model ---"
+done
+echo "All checks/updates complete."
